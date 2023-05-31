@@ -21,36 +21,24 @@ class ExtensionAttributes
     ): ExtensionAttribute {
         $key = $this->generateKey(name: $key ?? $name);
 
-        if ($this->exists(model: $model, key: $key)) {
+        if (! is_null(app(ExtensionAttributeRegistrar::class)->getAttributes(model: $model, key: $key))) {
             throw ExtensionAttributeKeyAlreadyExistsException::make(model: $model, key: $key);
         }
 
-        return ExtensionAttribute::query()->create([
+        $attribute = ExtensionAttribute::query()->create([
             'name' => $name,
             'key' => $key,
             'model_type' => (new $model)->getMorphClass(),
             'type' => $attributeType,
         ]);
+
+        app(ExtensionAttributeRegistrar::class)->forgetCachedAttributes();
+
+        return $attribute;
     }
 
     protected function generateKey(string $name): string
     {
         return Str::slug($name, '_');
-    }
-
-    public function exists(string $model, string $key): bool
-    {
-        return ExtensionAttribute::query()
-            ->where('key', $key)
-            ->where('model_type', $model)
-            ->exists();
-    }
-
-    public function find(string $model, string $key): ?ExtensionAttribute
-    {
-        return ExtensionAttribute::query()
-            ->where('key', $key)
-            ->where('model_type', $model)
-            ->first();
     }
 }

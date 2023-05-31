@@ -8,6 +8,11 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class ExtensionAttributesServiceProvider extends PackageServiceProvider
 {
+    public function boot(): void
+    {
+        $this->app->singleton(ExtensionAttributeRegistrar::class);
+    }
+
     public function configurePackage(Package $package): void
     {
         $package

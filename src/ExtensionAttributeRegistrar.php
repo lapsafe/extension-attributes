@@ -16,6 +16,7 @@ class ExtensionAttributeRegistrar
     protected Collection|null $attributes = null;
 
     public \DateInterval|int $cacheExpirationTime;
+
     public string $cacheKey;
 
     public function __construct(protected CacheManager $cacheManager)
@@ -78,9 +79,7 @@ class ExtensionAttributeRegistrar
     }
 
     /**
-     * @param class-string<Model>|null $model
-     * @param string|null $key
-     * @return Collection|array|null
+     * @param  class-string<Model>|null  $model
      */
     public function getAttributes(?string $model = null, ?string $key = null): Collection|array|null
     {
@@ -90,5 +89,4 @@ class ExtensionAttributeRegistrar
             ? $this->attributes
             : $this->attributes->where('key', $key)->where('model_type', (new $model)->getMorphClass())->first();
     }
-
 }

@@ -7,4 +7,5 @@ namespace LapSafe\ExtensionAttributes\Exceptions;
 use Exception;
 
 class ExtensionAttributeNotFound extends Exception
-{}
+{
+}

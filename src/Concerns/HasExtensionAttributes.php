@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 use LapSafe\ExtensionAttributes\Exceptions\ExtensionAttributeNotFound;
 use LapSafe\ExtensionAttributes\ExtensionAttributeRegistrar;
 use LapSafe\ExtensionAttributes\ExtensionAttributeType;
-use LapSafe\ExtensionAttributes\Facades\ExtensionAttributes;
 
 /**
  * @property Collection $extension_attributes
@@ -34,7 +33,7 @@ trait HasExtensionAttributes
         try {
             return $this->findAttribute($key)['name'];
         } catch (ExtensionAttributeNotFound) {
-            return "Unknown Attribute";
+            return 'Unknown Attribute';
         }
     }
 
@@ -45,7 +44,7 @@ trait HasExtensionAttributes
     {
         $attribute = app(ExtensionAttributeRegistrar::class)->getAttributes(get_class($this), $key);
 
-        if(is_null($attribute)) {
+        if (is_null($attribute)) {
             throw new ExtensionAttributeNotFound("Extension attribute {$key} not found on model {$this->getMorphClass()}");
         }
 

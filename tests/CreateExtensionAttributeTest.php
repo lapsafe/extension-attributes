@@ -6,13 +6,13 @@ use LapSafe\ExtensionAttributes\Facades\ExtensionAttributes;
 it('can create an extension attribute', function () {
     expect(ExtensionAttribute::query()->exists())->toBeFalse();
 
-    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String, 'testing-123');
+    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String, 'testing_123');
 
     $attribute = ExtensionAttribute::query()->first();
 
     expect($attribute)->not->toBeNull()
         ->and($attribute->name)->toBe('test')
-        ->and($attribute->key)->toBe('testing-123')
+        ->and($attribute->key)->toBe('testing_123')
         ->and($attribute->model_type)->toBe((new ExtensionAttribute)->getMorphClass())
         ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
 });
@@ -20,13 +20,13 @@ it('can create an extension attribute', function () {
 it('converts key to slug', function () {
     expect(ExtensionAttribute::query()->exists())->toBeFalse();
 
-    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String, 'My_Special Key');
+    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String, 'My-Special Key');
 
     $attribute = ExtensionAttribute::query()->first();
 
     expect($attribute)->not->toBeNull()
         ->and($attribute->name)->toBe('test')
-        ->and($attribute->key)->toBe('my-special-key')
+        ->and($attribute->key)->toBe('my_special_key')
         ->and($attribute->model_type)->toBe((new ExtensionAttribute)->getMorphClass())
         ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
 });

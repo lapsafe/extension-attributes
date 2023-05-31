@@ -9,11 +9,8 @@ use LapSafe\ExtensionAttributes\Exceptions\ExtensionAttributeKeyAlreadyExistsExc
 class ExtensionAttributes
 {
     /**
-     * @param string $name
-     * @param class-string<Model> $model
-     * @param ExtensionAttributeType $attributeType
-     * @param string|null $key
-     * @return ExtensionAttribute
+     * @param  class-string<Model>  $model
+     *
      * @throws ExtensionAttributeKeyAlreadyExistsException
      */
     public function new(

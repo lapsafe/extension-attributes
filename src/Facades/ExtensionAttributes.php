@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  */
 class ExtensionAttributes extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return \LapSafe\ExtensionAttributes\ExtensionAttributes::class;
     }

@@ -3,15 +3,21 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use LapSafe\ExtensionAttributes\ExtensionAttributeType;
 
 return new class extends Migration
 {
     public function up()
     {
-        Schema::create('extension_attributes_table', function (Blueprint $table) {
+        Schema::create('extension_attributes', function (Blueprint $table) {
             $table->id();
 
-            // add fields
+            $table->string('type')->default(ExtensionAttributeType::String->value);
+            $table->string('key');
+            $table->string('name');
+            $table->string('model_type');
+
+            $table->unique(['key', 'model_type']);
 
             $table->timestamps();
         });

@@ -24,4 +24,9 @@ class ExtensionAttribute extends Model
         'key',
         'type',
     ];
+
+    public function cast(mixed $value): mixed
+    {
+        return $this->type->cast($value);
+    }
 }

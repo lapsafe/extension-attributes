@@ -24,7 +24,7 @@ class ExtensionAttributes
     ): ExtensionAttribute {
         $key = $this->generateKey(name: $key ?? $name);
 
-        if ($this->extensionAttributeExists(model: $model, key: $key)) {
+        if ($this->exists(model: $model, key: $key)) {
             throw ExtensionAttributeKeyAlreadyExistsException::make(model: $model, key: $key);
         }
 
@@ -38,14 +38,22 @@ class ExtensionAttributes
 
     protected function generateKey(string $name): string
     {
-        return Str::slug($name);
+        return Str::slug($name, '_');
     }
 
-    protected function extensionAttributeExists(string $model, string $key): bool
+    public function exists(string $model, string $key): bool
     {
         return ExtensionAttribute::query()
             ->where('key', $key)
             ->where('model_type', $model)
             ->exists();
+    }
+
+    public function find(string $model, string $key): ?ExtensionAttribute
+    {
+        return ExtensionAttribute::query()
+            ->where('key', $key)
+            ->where('model_type', $model)
+            ->first();
     }
 }

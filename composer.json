@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "lapsafe/extension-attributes",
+    "description": "Extend Laravel Models with Defined Custom Attributes",
     "keywords": [
-        ":vendor_name",
+        "LapSafe",
         "laravel",
-        ":package_slug"
+        "extension-attributes"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/lapsafe/extension-attributes",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Dexter Harrison",
+            "email": "dexter.harrison@lapsafe.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "LapSafe\\ExtensionAttributes\\": "src/",
+            "LapSafe\\ExtensionAttributes\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "LapSafe\\ExtensionAttributes\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "LapSafe\\ExtensionAttributes\\ExtensionAttributesServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "ExtensionAttributes": "LapSafe\\ExtensionAttributes\\Facades\\ExtensionAttributes"
             }
         }
     },

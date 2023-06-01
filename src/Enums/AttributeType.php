@@ -21,4 +21,13 @@ enum AttributeType: string
             self::Date, self::DateTime => Carbon::parse($value),
         };
     }
+
+    public function validationRules(): array
+    {
+        return match ($this) {
+            self::String => ['string', 'max:64'],
+            self::Integer => ['integer'],
+            self::Date, self::DateTime => ['date'],
+        };
+    }
 }

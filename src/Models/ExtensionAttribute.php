@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
 use LapSafe\ExtensionAttributes\Enums\AttributeType;
+use LapSafe\ExtensionAttributes\ExtensionAttributeRegistrar;
 
 /**
  * @property string $name

@@ -9,6 +9,7 @@ class ExtensionAttributesServiceProvider extends PackageServiceProvider
 {
     public function boot(): void
     {
+        parent::boot();
         $this->app->singleton(ExtensionAttributeRegistrar::class);
     }
 

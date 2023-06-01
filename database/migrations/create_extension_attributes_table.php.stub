@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use LapSafe\ExtensionAttributes\ExtensionAttributeType;
+use LapSafe\ExtensionAttributes\Enums\AttributeType;
 
 return new class extends Migration
 {
@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('extension_attributes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('type')->default(ExtensionAttributeType::String->value);
+            $table->string('type')->default(AttributeType::String->value);
             $table->string('key');
             $table->string('name');
             $table->string('model_type');

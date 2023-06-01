@@ -8,4 +8,11 @@ return [
         'store' => 'default',
     ],
 
+    /**
+     * Register Models that can use Extension Attributes
+     */
+    'models' => [
+        //'Users' => 'App\Models\User',
+    ]
+
 ];

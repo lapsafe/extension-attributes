@@ -11,8 +11,6 @@ use LapSafe\ExtensionAttributes\Models\ExtensionAttribute;
 
 class ExtensionAttributes
 {
-    public array $models = [];
-
     /**
      * @param class-string<Model> $model
      *
@@ -31,7 +29,7 @@ class ExtensionAttributes
             throw ExtensionAttributeKeyAlreadyExistsException::make(model: $model, key: $key);
         }
 
-        if(! in_array($model, $this->models)) {
+        if(! in_array($model, config('extension-attributes.models'))) {
             throw ModelHasNotBeenRegistered::make(model: $model);
         }
 
@@ -47,14 +45,6 @@ class ExtensionAttributes
         return $attribute;
     }
 
-    /**
-     * @param array<class-string> $models
-     * @return void
-     */
-    public function registerModels(array $models): void
-    {
-        $this->models = $models;
-    }
 
     protected function generateKey(string $name): string
     {

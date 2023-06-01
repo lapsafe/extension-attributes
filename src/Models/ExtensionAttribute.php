@@ -38,15 +38,20 @@ class ExtensionAttribute extends Model
     public function modelDescription(): Attribute
     {
         return Attribute::make(
-            get: fn() => array_flip(config('extension-attributes.models'))[$this->model_type],
+            get: fn() => array_flip(config('extension-attributes.models'))[$this->getModelClass()],
         );
+    }
+
+    protected function getModelClass(): string
+    {
+        return isset(Relation::$morphMap[$this->model_type])
+            ? Relation::$morphMap[$this->model_type]
+            : $this->model_type;
     }
 
     public function delete(): ?bool
     {
-        $model = isset(Relation::$morphMap[$this->model_type])
-            ? Relation::$morphMap[$this->model_type]
-            : $this->model_type;
+        $model = $this->getModelClass();
 
         if (! is_subclass_of(object_or_class: $model, class: Model::class)) {
             $response = parent::delete();

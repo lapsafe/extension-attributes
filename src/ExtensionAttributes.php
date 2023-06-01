@@ -6,14 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use LapSafe\ExtensionAttributes\Enums\AttributeType;
 use LapSafe\ExtensionAttributes\Exceptions\ExtensionAttributeKeyAlreadyExistsException;
+use LapSafe\ExtensionAttributes\Exceptions\ModelHasNotBeenRegistered;
 use LapSafe\ExtensionAttributes\Models\ExtensionAttribute;
 
 class ExtensionAttributes
 {
+    public array $models = [];
+
     /**
-     * @param  class-string<Model>  $model
+     * @param class-string<Model> $model
      *
      * @throws ExtensionAttributeKeyAlreadyExistsException
+     * @throws ModelHasNotBeenRegistered
      */
     public function new(
         string $name,
@@ -27,6 +31,10 @@ class ExtensionAttributes
             throw ExtensionAttributeKeyAlreadyExistsException::make(model: $model, key: $key);
         }
 
+        if(! in_array($model, $this->models)) {
+            throw ModelHasNotBeenRegistered::make(model: $model);
+        }
+
         $attribute = ExtensionAttribute::query()->create([
             'name' => $name,
             'key' => $key,
@@ -37,6 +45,15 @@ class ExtensionAttributes
         app(ExtensionAttributeRegistrar::class)->forgetCachedAttributes();
 
         return $attribute;
+    }
+
+    /**
+     * @param array<class-string> $models
+     * @return void
+     */
+    public function registerModels(array $models): void
+    {
+        $this->models = $models;
     }
 
     protected function generateKey(string $name): string

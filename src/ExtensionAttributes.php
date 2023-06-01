@@ -4,7 +4,9 @@ namespace LapSafe\ExtensionAttributes;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use LapSafe\ExtensionAttributes\Enums\AttributeType;
 use LapSafe\ExtensionAttributes\Exceptions\ExtensionAttributeKeyAlreadyExistsException;
+use LapSafe\ExtensionAttributes\Models\ExtensionAttribute;
 
 class ExtensionAttributes
 {
@@ -14,10 +16,10 @@ class ExtensionAttributes
      * @throws ExtensionAttributeKeyAlreadyExistsException
      */
     public function new(
-        string $name,
-        string $model,
-        ExtensionAttributeType $attributeType = ExtensionAttributeType::String,
-        ?string $key = null
+        string        $name,
+        string        $model,
+        AttributeType $attributeType = AttributeType::String,
+        ?string       $key = null
     ): ExtensionAttribute {
         $key = $this->generateKey(name: $key ?? $name);
 

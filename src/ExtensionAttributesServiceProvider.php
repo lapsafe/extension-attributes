@@ -18,8 +18,6 @@ class ExtensionAttributesServiceProvider extends PackageServiceProvider
         $package
             ->name(name: 'extension-attributes')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration(migrationFileName: 'create_extension_attributes_table')
-            ->hasCommand(commandClassName: ExtensionAttributesCommand::class);
+            ->hasMigration(migrationFileName: 'create_extension_attributes_table');
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use LapSafe\ExtensionAttributes\Models\ExtensionAttribute;
 
 class ExtensionAttributeRegistrar
 {

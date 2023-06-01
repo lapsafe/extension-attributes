@@ -1,12 +1,12 @@
 <?php
 
-use LapSafe\ExtensionAttributes\ExtensionAttribute;
 use LapSafe\ExtensionAttributes\Facades\ExtensionAttributes;
+use LapSafe\ExtensionAttributes\Models\ExtensionAttribute;
 
 it('can create an extension attribute', function () {
     expect(ExtensionAttribute::query()->exists())->toBeFalse();
 
-    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String, 'testing_123');
+    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\Enums\AttributeType::String, 'testing_123');
 
     $attribute = ExtensionAttribute::query()->first();
 
@@ -14,13 +14,13 @@ it('can create an extension attribute', function () {
         ->and($attribute->name)->toBe('test')
         ->and($attribute->key)->toBe('testing_123')
         ->and($attribute->model_type)->toBe((new ExtensionAttribute)->getMorphClass())
-        ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
+        ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 });
 
 it('converts key to slug', function () {
     expect(ExtensionAttribute::query()->exists())->toBeFalse();
 
-    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String, 'My-Special Key');
+    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\Enums\AttributeType::String, 'My-Special Key');
 
     $attribute = ExtensionAttribute::query()->first();
 
@@ -28,13 +28,13 @@ it('converts key to slug', function () {
         ->and($attribute->name)->toBe('test')
         ->and($attribute->key)->toBe('my_special_key')
         ->and($attribute->model_type)->toBe((new ExtensionAttribute)->getMorphClass())
-        ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
+        ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 });
 
 it('can automatically generate key based upon name', function () {
     expect(ExtensionAttribute::query()->exists())->toBeFalse();
 
-    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
+    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 
     $attribute = ExtensionAttribute::query()->first();
 
@@ -42,18 +42,18 @@ it('can automatically generate key based upon name', function () {
         ->and($attribute->name)->toBe('test')
         ->and($attribute->key)->toBe('test')
         ->and($attribute->model_type)->toBe((new ExtensionAttribute)->getMorphClass())
-        ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
+        ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 });
 
 it('ensures that key is unique to model', function () {
     expect(ExtensionAttribute::query()->exists())->toBeFalse();
 
-    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
-    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
+    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\Enums\AttributeType::String);
+    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 
 })->throws(\LapSafe\ExtensionAttributes\Exceptions\ExtensionAttributeKeyAlreadyExistsException::class);
 
 it('can accept the same key for different models', function () {
-    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
-    ExtensionAttributes::new('test', \LapSafe\ExtensionAttributes\Tests\TestModels\User::class, \LapSafe\ExtensionAttributes\ExtensionAttributeType::String);
+    ExtensionAttributes::new('test', ExtensionAttribute::class, \LapSafe\ExtensionAttributes\Enums\AttributeType::String);
+    ExtensionAttributes::new('test', \LapSafe\ExtensionAttributes\Tests\TestModels\User::class, \LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 })->throwsNoExceptions();

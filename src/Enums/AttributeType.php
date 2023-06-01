@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace LapSafe\ExtensionAttributes;
+namespace LapSafe\ExtensionAttributes\Enums;
 
 use Illuminate\Support\Carbon;
 
-enum ExtensionAttributeType: string
+enum AttributeType: string
 {
     case String = 'string';
     case Integer = 'integer';

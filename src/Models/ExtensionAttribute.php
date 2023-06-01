@@ -2,22 +2,23 @@
 
 declare(strict_types=1);
 
-namespace LapSafe\ExtensionAttributes;
+namespace LapSafe\ExtensionAttributes\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
+use LapSafe\ExtensionAttributes\Enums\AttributeType;
 
 /**
  * @property string $name
  * @property string $model_type
  * @property string $key
- * @property ExtensionAttributeType $type
+ * @property AttributeType $type
  */
 class ExtensionAttribute extends Model
 {
     protected $casts = [
-        'type' => ExtensionAttributeType::class,
+        'type' => AttributeType::class,
     ];
 
     protected $fillable = [

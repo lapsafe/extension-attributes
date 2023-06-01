@@ -24,6 +24,10 @@ trait HasExtensionAttributes
 
     public function setExtensionAttribute(string $key, mixed $value): void
     {
+        if(is_null($this->extension_attributes)) {
+            $this->extension_attributes = [];
+        }
+
         $attribute = app(ExtensionAttributeRegistrar::class)->getAttributes(get_class($this), $key);
         $this->extension_attributes[$key] = AttributeType::from($attribute['type'])->cast($value);
     }

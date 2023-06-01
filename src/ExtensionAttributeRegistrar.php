@@ -53,6 +53,7 @@ class ExtensionAttributeRegistrar
     public function forgetCachedAttributes(): void
     {
         $this->cache->forget($this->cacheKey);
+        $this->attributes = null;
     }
 
     private function loadAttributes(): void

@@ -13,6 +13,6 @@ return [
      */
     'models' => [
         //'Users' => 'App\Models\User',
-    ]
+    ],
 
 ];

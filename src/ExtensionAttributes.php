@@ -29,7 +29,7 @@ class ExtensionAttributes
             throw ExtensionAttributeKeyAlreadyExistsException::make(model: $model, key: $key);
         }
 
-        if(! in_array($model, config('extension-attributes.models'))) {
+        if (! in_array($model, config('extension-attributes.models'))) {
             throw ModelHasNotBeenRegistered::make(model: $model);
         }
 

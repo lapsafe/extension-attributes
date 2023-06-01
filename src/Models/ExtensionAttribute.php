@@ -38,7 +38,7 @@ class ExtensionAttribute extends Model
     public function modelDescription(): Attribute
     {
         return Attribute::make(
-            get: fn() => array_flip(config('extension-attributes.models'))[$this->getModelClass()],
+            get: fn () => array_flip(config('extension-attributes.models'))[$this->getModelClass()],
         );
     }
 

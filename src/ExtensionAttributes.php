@@ -16,7 +16,7 @@ class ExtensionAttributes
     public function new(
         string $name,
         string $model,
-        ExtensionAttributeType $attributeType,
+        ExtensionAttributeType $attributeType = ExtensionAttributeType::String,
         ?string $key = null
     ): ExtensionAttribute {
         $key = $this->generateKey(name: $key ?? $name);

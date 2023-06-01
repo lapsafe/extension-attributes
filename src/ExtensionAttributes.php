@@ -12,7 +12,7 @@ use LapSafe\ExtensionAttributes\Models\ExtensionAttribute;
 class ExtensionAttributes
 {
     /**
-     * @param class-string<Model> $model
+     * @param  class-string<Model>  $model
      *
      * @throws ExtensionAttributeKeyAlreadyExistsException
      * @throws ModelHasNotBeenRegistered
@@ -44,7 +44,6 @@ class ExtensionAttributes
 
         return $attribute;
     }
-
 
     protected function generateKey(string $name): string
     {

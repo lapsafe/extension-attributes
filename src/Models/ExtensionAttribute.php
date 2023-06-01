@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LapSafe\ExtensionAttributes\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,13 @@ class ExtensionAttribute extends Model
     public function cast(mixed $value): mixed
     {
         return $this->type->cast($value);
+    }
+
+    public function modelDescription(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => array_flip(config('extension-attributes.models'))[$this->model_type],
+        );
     }
 
     public function delete(): ?bool

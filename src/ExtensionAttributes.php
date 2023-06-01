@@ -14,7 +14,7 @@ class ExtensionAttributes
     public array $models = [];
 
     /**
-     * @param class-string<Model> $model
+     * @param  class-string<Model>  $model
      *
      * @throws ExtensionAttributeKeyAlreadyExistsException
      * @throws ModelHasNotBeenRegistered
@@ -31,7 +31,7 @@ class ExtensionAttributes
             throw ExtensionAttributeKeyAlreadyExistsException::make(model: $model, key: $key);
         }
 
-        if(! in_array($model, $this->models)) {
+        if (! in_array($model, $this->models)) {
             throw ModelHasNotBeenRegistered::make(model: $model);
         }
 
@@ -48,8 +48,7 @@ class ExtensionAttributes
     }
 
     /**
-     * @param array<class-string> $models
-     * @return void
+     * @param  array<class-string>  $models
      */
     public function registerModels(array $models): void
     {

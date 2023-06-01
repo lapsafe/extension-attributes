@@ -2,6 +2,10 @@
 
 All notable changes to `extension-attributes` will be documented in this file.
 
+## v1.0.0 - 2023-06-01
+
+Initial Release
+
 ## v0.1.3 - 2023-06-01
 
 Register Models

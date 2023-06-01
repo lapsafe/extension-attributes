@@ -38,15 +38,16 @@ class ExtensionAttribute extends Model
             ? Relation::$morphMap[$this->model_type]
             : $this->model_type;
 
-        if(! is_subclass_of(object_or_class: $model, class: Model::class)) {
+        if (! is_subclass_of(object_or_class: $model, class: Model::class)) {
             $response = parent::delete();
             app(ExtensionAttributeRegistrar::class)->forgetCachedAttributes();
+
             return $response;
         }
 
         $model::query()
             ->update([
-                'extension_attributes' => DB::raw("JSON_REMOVE(extension_attributes, '$.{$this->key}')")
+                'extension_attributes' => DB::raw("JSON_REMOVE(extension_attributes, '$.{$this->key}')"),
             ]);
 
         $response = parent::delete();

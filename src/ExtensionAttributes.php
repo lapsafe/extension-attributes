@@ -16,10 +16,10 @@ class ExtensionAttributes
      * @throws ExtensionAttributeKeyAlreadyExistsException
      */
     public function new(
-        string        $name,
-        string        $model,
+        string $name,
+        string $model,
         AttributeType $attributeType = AttributeType::String,
-        ?string       $key = null
+        ?string $key = null
     ): ExtensionAttribute {
         $key = $this->generateKey(name: $key ?? $name);
 

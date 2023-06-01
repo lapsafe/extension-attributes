@@ -2,7 +2,6 @@
 
 namespace LapSafe\ExtensionAttributes;
 
-use LapSafe\ExtensionAttributes\Commands\ExtensionAttributesCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

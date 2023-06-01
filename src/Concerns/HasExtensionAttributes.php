@@ -24,7 +24,7 @@ trait HasExtensionAttributes
 
     public function setExtensionAttribute(string $key, mixed $value): void
     {
-        if(is_null($this->extension_attributes)) {
+        if (is_null($this->extension_attributes)) {
             $this->extension_attributes = [];
         }
 

@@ -32,7 +32,7 @@ class TestCase extends Orchestra
 
         config()->set('extension-attributes.models', [
             'user' => User::class,
-            'extension_attribute' => ExtensionAttribute::class
+            'extension_attribute' => ExtensionAttribute::class,
         ]);
 
         $migration = include __DIR__.'/../database/migrations/create_extension_attributes_table.php.stub';

@@ -6,7 +6,6 @@ namespace LapSafe\ExtensionAttributes\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
 use LapSafe\ExtensionAttributes\Enums\AttributeType;
 use LapSafe\ExtensionAttributes\ExtensionAttributeRegistrar;

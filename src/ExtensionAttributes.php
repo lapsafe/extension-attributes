@@ -36,7 +36,7 @@ class ExtensionAttributes
         $attribute = ExtensionAttribute::query()->create([
             'name' => $name,
             'key' => $key,
-            'model_type' => (new $model)->getMorphClass(),
+            'model_type' => array_flip(config('extension-attributes.models'))[$model],
             'type' => $attributeType,
         ]);
 

@@ -89,6 +89,6 @@ class ExtensionAttributeRegistrar
 
         return is_null($key)
             ? $this->attributes
-            : $this->attributes->where('key', $key)->where('model_type', (new $model)->getMorphClass())->first();
+            : $this->attributes->where('key', $key)->where('model_type', array_flip(config('extension-attributes.models'))[$model])->first();
     }
 }

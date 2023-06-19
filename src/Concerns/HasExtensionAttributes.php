@@ -49,7 +49,7 @@ trait HasExtensionAttributes
         $attribute = app(ExtensionAttributeRegistrar::class)->getAttributes(get_class($this), $key);
 
         if (is_null($attribute)) {
-            throw new ExtensionAttributeNotFound("Extension attribute {$key} not found on model {$this->getMorphClass()}");
+            throw new ExtensionAttributeNotFound("Extension attribute {$key} not found for model");
         }
 
         return $attribute;

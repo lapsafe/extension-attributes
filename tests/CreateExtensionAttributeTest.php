@@ -13,7 +13,7 @@ it('can create an extension attribute', function () {
     expect($attribute)->not->toBeNull()
         ->and($attribute->name)->toBe('test')
         ->and($attribute->key)->toBe('testing_123')
-        ->and($attribute->model_type)->toBe((new ExtensionAttribute)->getMorphClass())
+        ->and($attribute->model_type)->toBe(array_flip(config('extension-attributes.models'))[ExtensionAttribute::class])
         ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 });
 
@@ -27,7 +27,7 @@ it('converts key to slug', function () {
     expect($attribute)->not->toBeNull()
         ->and($attribute->name)->toBe('test')
         ->and($attribute->key)->toBe('my_special_key')
-        ->and($attribute->model_type)->toBe((new ExtensionAttribute)->getMorphClass())
+        ->and($attribute->model_type)->toBe(array_flip(config('extension-attributes.models'))[ExtensionAttribute::class])
         ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 });
 
@@ -41,7 +41,7 @@ it('can automatically generate key based upon name', function () {
     expect($attribute)->not->toBeNull()
         ->and($attribute->name)->toBe('test')
         ->and($attribute->key)->toBe('test')
-        ->and($attribute->model_type)->toBe((new ExtensionAttribute)->getMorphClass())
+        ->and($attribute->model_type)->toBe(array_flip(config('extension-attributes.models'))[ExtensionAttribute::class])
         ->and($attribute->type)->toBe(\LapSafe\ExtensionAttributes\Enums\AttributeType::String);
 });
 

@@ -44,9 +44,7 @@ class ExtensionAttribute extends Model
 
     protected function getModelClass(): string
     {
-        return isset(Relation::$morphMap[$this->model_type])
-            ? Relation::$morphMap[$this->model_type]
-            : $this->model_type;
+        return config('extension-attributes.models')[$this->model_type];
     }
 
     public function delete(): ?bool

@@ -2,6 +2,14 @@
 
 All notable changes to `extension-attributes` will be documented in this file.
 
+## v1.1.0 - 2024-03-13
+
+### What's Changed
+
+Support Laravel 11
+
+**Full Changelog**: https://github.com/lapsafe/extension-attributes/compare/v1.0.1...v1.1.0
+
 ## v1.0.1 - 2023-06-19
 
 Key by value not morph class
